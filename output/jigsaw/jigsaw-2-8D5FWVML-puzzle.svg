@@ -1,0 +1,166 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='498' height='508' viewBox='0 0 498 508'>
+<style> .num{font-family:Arial; font-size:22px;} .title{font-family:Arial; font-size:16px;} .id{font-family:Arial; font-size:14px;} </style>
+<line x1='24' y1='34' x2='474' y2='34' stroke='black' stroke-width='3.0' />
+<line x1='24' y1='84' x2='474' y2='84' stroke='black' stroke-width='1.0' />
+<line x1='24' y1='134' x2='474' y2='134' stroke='black' stroke-width='1.0' />
+<line x1='24' y1='184' x2='474' y2='184' stroke='black' stroke-width='1.0' />
+<line x1='24' y1='234' x2='474' y2='234' stroke='black' stroke-width='1.0' />
+<line x1='24' y1='284' x2='474' y2='284' stroke='black' stroke-width='1.0' />
+<line x1='24' y1='334' x2='474' y2='334' stroke='black' stroke-width='1.0' />
+<line x1='24' y1='384' x2='474' y2='384' stroke='black' stroke-width='1.0' />
+<line x1='24' y1='434' x2='474' y2='434' stroke='black' stroke-width='1.0' />
+<line x1='24' y1='484' x2='474' y2='484' stroke='black' stroke-width='3.0' />
+<line x1='24' y1='34' x2='24' y2='484' stroke='black' stroke-width='3.0' />
+<line x1='74' y1='34' x2='74' y2='484' stroke='black' stroke-width='1.0' />
+<line x1='124' y1='34' x2='124' y2='484' stroke='black' stroke-width='1.0' />
+<line x1='174' y1='34' x2='174' y2='484' stroke='black' stroke-width='1.0' />
+<line x1='224' y1='34' x2='224' y2='484' stroke='black' stroke-width='1.0' />
+<line x1='274' y1='34' x2='274' y2='484' stroke='black' stroke-width='1.0' />
+<line x1='324' y1='34' x2='324' y2='484' stroke='black' stroke-width='1.0' />
+<line x1='374' y1='34' x2='374' y2='484' stroke='black' stroke-width='1.0' />
+<line x1='424' y1='34' x2='424' y2='484' stroke='black' stroke-width='1.0' />
+<line x1='474' y1='34' x2='474' y2='484' stroke='black' stroke-width='3.0' />
+<line x1='124' y1='34' x2='124' y2='84' stroke='black' stroke-width='3' />
+<line x1='174' y1='84' x2='174' y2='134' stroke='black' stroke-width='3' />
+<line x1='424' y1='84' x2='424' y2='134' stroke='black' stroke-width='3' />
+<line x1='224' y1='134' x2='224' y2='184' stroke='black' stroke-width='3' />
+<line x1='324' y1='134' x2='324' y2='184' stroke='black' stroke-width='3' />
+<line x1='424' y1='134' x2='424' y2='184' stroke='black' stroke-width='3' />
+<line x1='124' y1='184' x2='124' y2='234' stroke='black' stroke-width='3' />
+<line x1='374' y1='184' x2='374' y2='234' stroke='black' stroke-width='3' />
+<line x1='274' y1='234' x2='274' y2='284' stroke='black' stroke-width='3' />
+<line x1='374' y1='234' x2='374' y2='284' stroke='black' stroke-width='3' />
+<line x1='124' y1='284' x2='124' y2='334' stroke='black' stroke-width='3' />
+<line x1='274' y1='284' x2='274' y2='334' stroke='black' stroke-width='3' />
+<line x1='224' y1='334' x2='224' y2='384' stroke='black' stroke-width='3' />
+<line x1='324' y1='334' x2='324' y2='384' stroke='black' stroke-width='3' />
+<line x1='424' y1='334' x2='424' y2='384' stroke='black' stroke-width='3' />
+<line x1='74' y1='384' x2='74' y2='434' stroke='black' stroke-width='3' />
+<line x1='374' y1='384' x2='374' y2='434' stroke='black' stroke-width='3' />
+<line x1='424' y1='384' x2='424' y2='434' stroke='black' stroke-width='3' />
+<line x1='74' y1='434' x2='74' y2='484' stroke='black' stroke-width='3' />
+<line x1='124' y1='434' x2='124' y2='484' stroke='black' stroke-width='3' />
+<line x1='424' y1='434' x2='424' y2='484' stroke='black' stroke-width='3' />
+<line x1='124' y1='84' x2='174' y2='84' stroke='black' stroke-width='3' />
+<line x1='174' y1='84' x2='224' y2='84' stroke='black' stroke-width='3' />
+<line x1='224' y1='84' x2='274' y2='84' stroke='black' stroke-width='3' />
+<line x1='274' y1='84' x2='324' y2='84' stroke='black' stroke-width='3' />
+<line x1='324' y1='84' x2='374' y2='84' stroke='black' stroke-width='3' />
+<line x1='374' y1='84' x2='424' y2='84' stroke='black' stroke-width='3' />
+<line x1='174' y1='134' x2='224' y2='134' stroke='black' stroke-width='3' />
+<line x1='224' y1='134' x2='274' y2='134' stroke='black' stroke-width='3' />
+<line x1='274' y1='134' x2='324' y2='134' stroke='black' stroke-width='3' />
+<line x1='24' y1='184' x2='74' y2='184' stroke='black' stroke-width='3' />
+<line x1='74' y1='184' x2='124' y2='184' stroke='black' stroke-width='3' />
+<line x1='124' y1='184' x2='174' y2='184' stroke='black' stroke-width='3' />
+<line x1='174' y1='184' x2='224' y2='184' stroke='black' stroke-width='3' />
+<line x1='324' y1='184' x2='374' y2='184' stroke='black' stroke-width='3' />
+<line x1='424' y1='184' x2='474' y2='184' stroke='black' stroke-width='3' />
+<line x1='124' y1='234' x2='174' y2='234' stroke='black' stroke-width='3' />
+<line x1='174' y1='234' x2='224' y2='234' stroke='black' stroke-width='3' />
+<line x1='224' y1='234' x2='274' y2='234' stroke='black' stroke-width='3' />
+<line x1='374' y1='234' x2='424' y2='234' stroke='black' stroke-width='3' />
+<line x1='424' y1='234' x2='474' y2='234' stroke='black' stroke-width='3' />
+<line x1='124' y1='284' x2='174' y2='284' stroke='black' stroke-width='3' />
+<line x1='174' y1='284' x2='224' y2='284' stroke='black' stroke-width='3' />
+<line x1='224' y1='284' x2='274' y2='284' stroke='black' stroke-width='3' />
+<line x1='274' y1='284' x2='324' y2='284' stroke='black' stroke-width='3' />
+<line x1='324' y1='284' x2='374' y2='284' stroke='black' stroke-width='3' />
+<line x1='24' y1='334' x2='74' y2='334' stroke='black' stroke-width='3' />
+<line x1='74' y1='334' x2='124' y2='334' stroke='black' stroke-width='3' />
+<line x1='224' y1='334' x2='274' y2='334' stroke='black' stroke-width='3' />
+<line x1='274' y1='334' x2='324' y2='334' stroke='black' stroke-width='3' />
+<line x1='324' y1='334' x2='374' y2='334' stroke='black' stroke-width='3' />
+<line x1='374' y1='334' x2='424' y2='334' stroke='black' stroke-width='3' />
+<line x1='74' y1='384' x2='124' y2='384' stroke='black' stroke-width='3' />
+<line x1='124' y1='384' x2='174' y2='384' stroke='black' stroke-width='3' />
+<line x1='174' y1='384' x2='224' y2='384' stroke='black' stroke-width='3' />
+<line x1='324' y1='384' x2='374' y2='384' stroke='black' stroke-width='3' />
+<line x1='124' y1='434' x2='174' y2='434' stroke='black' stroke-width='3' />
+<line x1='174' y1='434' x2='224' y2='434' stroke='black' stroke-width='3' />
+<line x1='224' y1='434' x2='274' y2='434' stroke='black' stroke-width='3' />
+<line x1='274' y1='434' x2='324' y2='434' stroke='black' stroke-width='3' />
+<line x1='324' y1='434' x2='374' y2='434' stroke='black' stroke-width='3' />
+<text x='49.0' y='66.0' class='num' text-anchor='middle'></text>
+<text x='99.0' y='66.0' class='num' text-anchor='middle'></text>
+<text x='149.0' y='66.0' class='num' text-anchor='middle'>2</text>
+<text x='199.0' y='66.0' class='num' text-anchor='middle'>3</text>
+<text x='249.0' y='66.0' class='num' text-anchor='middle'></text>
+<text x='299.0' y='66.0' class='num' text-anchor='middle'></text>
+<text x='349.0' y='66.0' class='num' text-anchor='middle'>4</text>
+<text x='399.0' y='66.0' class='num' text-anchor='middle'></text>
+<text x='449.0' y='66.0' class='num' text-anchor='middle'>6</text>
+<text x='49.0' y='116.0' class='num' text-anchor='middle'></text>
+<text x='99.0' y='116.0' class='num' text-anchor='middle'></text>
+<text x='149.0' y='116.0' class='num' text-anchor='middle'></text>
+<text x='199.0' y='116.0' class='num' text-anchor='middle'></text>
+<text x='249.0' y='116.0' class='num' text-anchor='middle'>5</text>
+<text x='299.0' y='116.0' class='num' text-anchor='middle'>4</text>
+<text x='349.0' y='116.0' class='num' text-anchor='middle'></text>
+<text x='399.0' y='116.0' class='num' text-anchor='middle'>9</text>
+<text x='449.0' y='116.0' class='num' text-anchor='middle'></text>
+<text x='49.0' y='166.0' class='num' text-anchor='middle'>2</text>
+<text x='99.0' y='166.0' class='num' text-anchor='middle'></text>
+<text x='149.0' y='166.0' class='num' text-anchor='middle'>9</text>
+<text x='199.0' y='166.0' class='num' text-anchor='middle'></text>
+<text x='249.0' y='166.0' class='num' text-anchor='middle'></text>
+<text x='299.0' y='166.0' class='num' text-anchor='middle'>8</text>
+<text x='349.0' y='166.0' class='num' text-anchor='middle'></text>
+<text x='399.0' y='166.0' class='num' text-anchor='middle'>7</text>
+<text x='449.0' y='166.0' class='num' text-anchor='middle'>5</text>
+<text x='49.0' y='216.0' class='num' text-anchor='middle'>7</text>
+<text x='99.0' y='216.0' class='num' text-anchor='middle'>9</text>
+<text x='149.0' y='216.0' class='num' text-anchor='middle'>6</text>
+<text x='199.0' y='216.0' class='num' text-anchor='middle'>1</text>
+<text x='249.0' y='216.0' class='num' text-anchor='middle'></text>
+<text x='299.0' y='216.0' class='num' text-anchor='middle'>5</text>
+<text x='349.0' y='216.0' class='num' text-anchor='middle'></text>
+<text x='399.0' y='216.0' class='num' text-anchor='middle'></text>
+<text x='449.0' y='216.0' class='num' text-anchor='middle'></text>
+<text x='49.0' y='266.0' class='num' text-anchor='middle'>4</text>
+<text x='99.0' y='266.0' class='num' text-anchor='middle'>2</text>
+<text x='149.0' y='266.0' class='num' text-anchor='middle'>8</text>
+<text x='199.0' y='266.0' class='num' text-anchor='middle'>5</text>
+<text x='249.0' y='266.0' class='num' text-anchor='middle'>1</text>
+<text x='299.0' y='266.0' class='num' text-anchor='middle'></text>
+<text x='349.0' y='266.0' class='num' text-anchor='middle'>9</text>
+<text x='399.0' y='266.0' class='num' text-anchor='middle'></text>
+<text x='449.0' y='266.0' class='num' text-anchor='middle'>3</text>
+<text x='49.0' y='316.0' class='num' text-anchor='middle'></text>
+<text x='99.0' y='316.0' class='num' text-anchor='middle'>6</text>
+<text x='149.0' y='316.0' class='num' text-anchor='middle'></text>
+<text x='199.0' y='316.0' class='num' text-anchor='middle'>7</text>
+<text x='249.0' y='316.0' class='num' text-anchor='middle'></text>
+<text x='299.0' y='316.0' class='num' text-anchor='middle'></text>
+<text x='349.0' y='316.0' class='num' text-anchor='middle'></text>
+<text x='399.0' y='316.0' class='num' text-anchor='middle'>5</text>
+<text x='449.0' y='316.0' class='num' text-anchor='middle'></text>
+<text x='49.0' y='366.0' class='num' text-anchor='middle'></text>
+<text x='99.0' y='366.0' class='num' text-anchor='middle'></text>
+<text x='149.0' y='366.0' class='num' text-anchor='middle'></text>
+<text x='199.0' y='366.0' class='num' text-anchor='middle'>8</text>
+<text x='249.0' y='366.0' class='num' text-anchor='middle'>9</text>
+<text x='299.0' y='366.0' class='num' text-anchor='middle'>2</text>
+<text x='349.0' y='366.0' class='num' text-anchor='middle'></text>
+<text x='399.0' y='366.0' class='num' text-anchor='middle'></text>
+<text x='449.0' y='366.0' class='num' text-anchor='middle'></text>
+<text x='49.0' y='416.0' class='num' text-anchor='middle'>9</text>
+<text x='99.0' y='416.0' class='num' text-anchor='middle'>8</text>
+<text x='149.0' y='416.0' class='num' text-anchor='middle'>5</text>
+<text x='199.0' y='416.0' class='num' text-anchor='middle'>4</text>
+<text x='249.0' y='416.0' class='num' text-anchor='middle'>6</text>
+<text x='299.0' y='416.0' class='num' text-anchor='middle'></text>
+<text x='349.0' y='416.0' class='num' text-anchor='middle'></text>
+<text x='399.0' y='416.0' class='num' text-anchor='middle'>1</text>
+<text x='449.0' y='416.0' class='num' text-anchor='middle'>2</text>
+<text x='49.0' y='466.0' class='num' text-anchor='middle'></text>
+<text x='99.0' y='466.0' class='num' text-anchor='middle'></text>
+<text x='149.0' y='466.0' class='num' text-anchor='middle'>7</text>
+<text x='199.0' y='466.0' class='num' text-anchor='middle'></text>
+<text x='249.0' y='466.0' class='num' text-anchor='middle'></text>
+<text x='299.0' y='466.0' class='num' text-anchor='middle'></text>
+<text x='349.0' y='466.0' class='num' text-anchor='middle'>3</text>
+<text x='399.0' y='466.0' class='num' text-anchor='middle'></text>
+<text x='449.0' y='466.0' class='num' text-anchor='middle'>4</text>
+<text x='24' y='502' class='id' text-anchor='start' style='font-size:10; fill:gray'>ID: 8D5FWVML - Difficulty / Schwierigkeit: 2</text>
+</svg>
