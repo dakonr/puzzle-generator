@@ -299,8 +299,8 @@ def svg_render(grid: List[List[int]], regions: List[List[int]], svg_path: str, d
     parts.append("<style> .num{font-family:Arial; font-size:22px;} .title{font-family:Arial; font-size:16px;} .id{font-family:Arial; font-size:14px;} </style>")
 
     # Title (difficulty) at top center
-    title = f"Jigsaw Sudoku – Schwierigkeit {difficulty}"
-    parts.append(f"<text x='{width/2}' y='{top_h-8}' class='title' text-anchor='middle' dominant-baseline='ideographic'>{title}</text>")
+    #title = f"Jigsaw Sudoku – Schwierigkeit {difficulty}"
+    #parts.append(f"<text x='{width/2}' y='{top_h-8}' class='title' text-anchor='middle' dominant-baseline='ideographic'>{title}</text>")
 
     # Draw cell grid thin lines
     for r in range(GRID_SIZE+1):
@@ -348,7 +348,7 @@ def svg_render(grid: List[List[int]], regions: List[List[int]], svg_path: str, d
             parts.append(f"<text x='{cx}' y='{cy}' class='num' text-anchor='middle'>{text_val}</text>")
 
     # Bottom-left ID
-    parts.append(f"<text x='{margin}' y='{height-6}' class='id' text-anchor='start'>ID: {puzzle_id}</text>")
+    parts.append(f"<text x='{margin}' y='{height-6}' class='id' text-anchor='start' style='font-size:10; fill:gray'>ID: {puzzle_id} - Difficulty / Schwierigkeit: {difficulty}</text>")
 
     parts.append("</svg>")
     svg = "\n".join(parts)
@@ -377,7 +377,7 @@ def ensure_output_dir(path: str) -> None:
 
 def make_filename(base_dir: str, puzzle_id: str, difficulty: int, kind: str) -> str:
     # kind: 'puzzle' or 'solution'
-    return os.path.join(base_dir, f"jigsawsudoku-{difficulty}-{puzzle_id}-{kind}.svg")
+    return os.path.join(base_dir, f"jigsaw-{difficulty}-{puzzle_id}-{kind}.svg")
 
 # ------------------------------
 # CLI
@@ -387,7 +387,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate Jigsaw Sudokus and export to SVG.")
     parser.add_argument("-d", "--difficulty", type=int, default=3, help="Difficulty level 1–6")
     parser.add_argument("-n", "--count", type=int, default=1, help="Number of Sudokus to generate")
-    parser.add_argument("-o", "--output", type=str, default="output", help="Output directory for SVGs")
+    parser.add_argument("-o", "--output", type=str, default="output/jigsaw", help="Output directory for SVGs")
     return parser.parse_args()
 
 
