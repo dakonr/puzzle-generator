@@ -27,7 +27,7 @@ from typing import List, Tuple, Optional
 # ------------------------------
 GRID_SIZE = 9
 DIGITS = list(range(1, GRID_SIZE + 1))
-FOUR_NEIGHBORS = [(1,0),(-1,0),(0,1),(0,-1)]
+FOUR_NEIGHBORS = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 
 # Difficulty mapping: target givens per puzzle
 DIFFICULTY_GIVENS = {
@@ -43,6 +43,7 @@ DIFFICULTY_GIVENS = {
 # Region generation (irregular contiguous nonominoes)
 # ------------------------------
 
+
 def in_bounds(r: int, c: int) -> bool:
     return 0 <= r < GRID_SIZE and 0 <= c < GRID_SIZE
 
@@ -54,12 +55,14 @@ def generate_regions(max_restarts: int = 300) -> List[List[int]]:
     Returns a 9x9 matrix of region indices in [0..8].
     """
 
-    def frontier(idx: int, regs: List[List[Tuple[int,int]]], reg_of: List[List[int]]) -> List[Tuple[int,int]]:
-        f: List[Tuple[int,int]] = []
+    def frontier(
+        idx: int, regs: List[List[Tuple[int, int]]], reg_of: List[List[int]]
+    ) -> List[Tuple[int, int]]:
+        f: List[Tuple[int, int]] = []
         seen = set()
-        for (r,c) in regs[idx]:
-            for (dr,dc) in FOUR_NEIGHBORS:
-                nr, nc = r+dr, c+dc
+        for r, c in regs[idx]:
+            for dr, dc in FOUR_NEIGHBORS:
+                nr, nc = r + dr, c + dc
                 if in_bounds(nr, nc) and reg_of[nr][nc] == -1:
                     if (nr, nc) not in seen:
                         seen.add((nr, nc))
@@ -68,7 +71,7 @@ def generate_regions(max_restarts: int = 300) -> List[List[int]]:
         return f
 
     def standard_box_mapping(r: int, c: int) -> int:
-        return (r//3)*3 + (c//3)
+        return (r // 3) * 3 + (c // 3)
 
     def not_standard(mat: List[List[int]]) -> bool:
         for r in range(GRID_SIZE):
@@ -94,7 +97,7 @@ def generate_regions(max_restarts: int = 300) -> List[List[int]]:
         random.shuffle(all_cells)
         seeds = all_cells[:GRID_SIZE]
 
-        regions: List[List[Tuple[int,int]]] = [[] for _ in range(GRID_SIZE)]
+        regions: List[List[Tuple[int, int]]] = [[] for _ in range(GRID_SIZE)]
         region_of = [[-1 for _ in range(GRID_SIZE)] for _ in range(GRID_SIZE)]
 
         for idx, (sr, sc) in enumerate(seeds):
@@ -118,14 +121,14 @@ def generate_regions(max_restarts: int = 300) -> List[List[int]]:
                 # pick candidate with most free neighbors to reduce isolation
                 best_cell = None
                 best_score = -1
-                for (nr, nc) in f:
+                for nr, nc in f:
                     score = 0
-                    for (dr,dc) in FOUR_NEIGHBORS:
-                        rr, cc = nr+dr, nc+dc
+                    for dr, dc in FOUR_NEIGHBORS:
+                        rr, cc = nr + dr, nc + dc
                         if in_bounds(rr, cc) and region_of[rr][cc] == -1:
                             score += 1
                     # light randomization
-                    score += random.random()*0.1
+                    score += random.random() * 0.1
                     if score > best_score:
                         best_score = score
                         best_cell = (nr, nc)
@@ -138,7 +141,7 @@ def generate_regions(max_restarts: int = 300) -> List[List[int]]:
             if all(len(regions[i]) == GRID_SIZE for i in range(GRID_SIZE)):
                 mat = [[-1 for _ in range(GRID_SIZE)] for _ in range(GRID_SIZE)]
                 for ridx in range(GRID_SIZE):
-                    for (r,c) in regions[ridx]:
+                    for r, c in regions[ridx]:
                         mat[r][c] = ridx
                 # validate non-standard and crossing boxes
                 if not_standard(mat) and regions_cross_boxes(mat, min_cross=4):
@@ -148,17 +151,23 @@ def generate_regions(max_restarts: int = 300) -> List[List[int]]:
         # restart if stuck or invalid
 
     # If repeated failures, raise to signal the need to retry; caller can catch if desired.
-    raise RuntimeError("Failed to generate irregular jigsaw regions after many attempts.")
+    raise RuntimeError(
+        "Failed to generate irregular jigsaw regions after many attempts."
+    )
+
 
 # ------------------------------
 # Solver and generator
 # ------------------------------
 
+
 def region_index(regions: List[List[int]], r: int, c: int) -> int:
     return regions[r][c]
 
 
-def compute_candidates(grid: List[List[int]], regions: List[List[int]], r: int, c: int) -> List[int]:
+def compute_candidates(
+    grid: List[List[int]], regions: List[List[int]], r: int, c: int
+) -> List[int]:
     if grid[r][c] != 0:
         return []
     used = set()
@@ -175,7 +184,9 @@ def compute_candidates(grid: List[List[int]], regions: List[List[int]], r: int, 
     return [d for d in DIGITS if d not in used]
 
 
-def find_unassigned_with_mrv(grid: List[List[int]], regions: List[List[int]]) -> Optional[Tuple[int,int,List[int]]]:
+def find_unassigned_with_mrv(
+    grid: List[List[int]], regions: List[List[int]]
+) -> Optional[Tuple[int, int, List[int]]]:
     best = None
     best_cands = None
     for r in range(GRID_SIZE):
@@ -193,7 +204,9 @@ def find_unassigned_with_mrv(grid: List[List[int]], regions: List[List[int]]) ->
     return (best[0], best[1], best_cands)
 
 
-def solve_backtracking(grid: List[List[int]], regions: List[List[int]]) -> Optional[List[List[int]]]:
+def solve_backtracking(
+    grid: List[List[int]], regions: List[List[int]]
+) -> Optional[List[List[int]]]:
     """Solve a Jigsaw Sudoku via backtracking; returns solution grid or None."""
     # Deep copy grid for safety
     g = [row[:] for row in grid]
@@ -217,7 +230,9 @@ def solve_backtracking(grid: List[List[int]], regions: List[List[int]]) -> Optio
     return None
 
 
-def count_solutions(grid: List[List[int]], regions: List[List[int]], limit: int = 2) -> int:
+def count_solutions(
+    grid: List[List[int]], regions: List[List[int]], limit: int = 2
+) -> int:
     """Count number of solutions up to 'limit'. Returns <= limit."""
     count = 0
     g = [row[:] for row in grid]
@@ -247,7 +262,7 @@ def count_solutions(grid: List[List[int]], regions: List[List[int]], limit: int 
 
 def generate_full_solution(regions: List[List[int]]) -> List[List[int]]:
     """Generate a fully solved grid using backtracking from empty."""
-    empty = [[0]*GRID_SIZE for _ in range(GRID_SIZE)]
+    empty = [[0] * GRID_SIZE for _ in range(GRID_SIZE)]
     sol = solve_backtracking(empty, regions)
     # In pathological rare cases, try regenerating regions
     tries = 0
@@ -259,15 +274,17 @@ def generate_full_solution(regions: List[List[int]]) -> List[List[int]]:
     return sol
 
 
-def generate_puzzle_from_solution(solution: List[List[int]], regions: List[List[int]], target_givens: int) -> List[List[int]]:
+def generate_puzzle_from_solution(
+    solution: List[List[int]], regions: List[List[int]], target_givens: int
+) -> List[List[int]]:
     """Remove clues while maintaining uniqueness until target_givens reached."""
     grid = [row[:] for row in solution]
-    cells = [(r,c) for r in range(GRID_SIZE) for c in range(GRID_SIZE)]
+    cells = [(r, c) for r in range(GRID_SIZE) for c in range(GRID_SIZE)]
     random.shuffle(cells)
 
     # Ensure we don't go below target_givens
-    current_givens = GRID_SIZE*GRID_SIZE
-    for (r,c) in cells:
+    current_givens = GRID_SIZE * GRID_SIZE
+    for r, c in cells:
         if current_givens <= target_givens:
             break
         saved = grid[r][c]
@@ -280,75 +297,100 @@ def generate_puzzle_from_solution(solution: List[List[int]], regions: List[List[
             grid[r][c] = saved
     return grid
 
+
 # ------------------------------
 # SVG rendering
 # ------------------------------
 
-def svg_render(grid: List[List[int]], regions: List[List[int]], svg_path: str, difficulty: int, puzzle_id: str, show_all_numbers: bool) -> None:
+
+def svg_render(
+    grid: List[List[int]],
+    regions: List[List[int]],
+    svg_path: str,
+    difficulty: int,
+    puzzle_id: str,
+    show_all_numbers: bool,
+) -> None:
     """Render grid to SVG, draw thick lines on region borders, show difficulty at top and ID bottom-left."""
     cell = 50
     margin = 24
-    top_h = 28
+    top_h = 10
     bottom_h = 24
-    width = margin*2 + GRID_SIZE*cell
-    height = top_h + margin + GRID_SIZE*cell + bottom_h
+    width = margin * 2 + GRID_SIZE * cell
+    height = top_h + margin + GRID_SIZE * cell + bottom_h
     grid_top = top_h
     # Start SVG
     parts = []
-    parts.append(f"<svg xmlns='http://www.w3.org/2000/svg' width='{width}' height='{height}' viewBox='0 0 {width} {height}'>")
-    parts.append("<style> .num{font-family:Arial; font-size:22px;} .title{font-family:Arial; font-size:16px;} .id{font-family:Arial; font-size:14px;} </style>")
+    parts.append(
+        f"<svg xmlns='http://www.w3.org/2000/svg' width='{width}' height='{height}' viewBox='0 0 {width} {height}'>"
+    )
+    parts.append(
+        "<style> .num{font-family:Arial; font-size:22px;} .title{font-family:Arial; font-size:16px;} .id{font-family:Arial; font-size:14px;} </style>"
+    )
 
     # Title (difficulty) at top center
-    #title = f"Jigsaw Sudoku – Schwierigkeit {difficulty}"
-    #parts.append(f"<text x='{width/2}' y='{top_h-8}' class='title' text-anchor='middle' dominant-baseline='ideographic'>{title}</text>")
+    # title = f"Jigsaw Sudoku – Schwierigkeit {difficulty}"
+    # parts.append(f"<text x='{width/2}' y='{top_h-8}' class='title' text-anchor='middle' dominant-baseline='ideographic'>{title}</text>")
 
     # Draw cell grid thin lines
-    for r in range(GRID_SIZE+1):
-        y = grid_top + margin + r*cell
+    for r in range(GRID_SIZE + 1):
+        y = grid_top + margin + r * cell
         x1 = margin
-        x2 = margin + GRID_SIZE*cell
+        x2 = margin + GRID_SIZE * cell
         stroke_w = 1.0
         if r == 0 or r == GRID_SIZE:
             stroke_w = 3.0
-        parts.append(f"<line x1='{x1}' y1='{y}' x2='{x2}' y2='{y}' stroke='black' stroke-width='{stroke_w}' />")
-    for c in range(GRID_SIZE+1):
-        x = margin + c*cell
+        parts.append(
+            f"<line x1='{x1}' y1='{y}' x2='{x2}' y2='{y}' stroke='black' stroke-width='{stroke_w}' />"
+        )
+    for c in range(GRID_SIZE + 1):
+        x = margin + c * cell
         y1 = grid_top + margin
-        y2 = grid_top + margin + GRID_SIZE*cell
+        y2 = grid_top + margin + GRID_SIZE * cell
         stroke_w = 1.0
         if c == 0 or c == GRID_SIZE:
             stroke_w = 3.0
-        parts.append(f"<line x1='{x}' y1='{y1}' x2='{x}' y2='{y2}' stroke='black' stroke-width='{stroke_w}' />")
+        parts.append(
+            f"<line x1='{x}' y1='{y1}' x2='{x}' y2='{y2}' stroke='black' stroke-width='{stroke_w}' />"
+        )
 
     # Region boundaries (thicker lines between different regions)
     # Vertical boundaries between (r,c) and (r,c+1)
     for r in range(GRID_SIZE):
-        for c in range(GRID_SIZE-1):
-            if regions[r][c] != regions[r][c+1]:
-                x = margin + (c+1)*cell
-                y1 = grid_top + margin + r*cell
+        for c in range(GRID_SIZE - 1):
+            if regions[r][c] != regions[r][c + 1]:
+                x = margin + (c + 1) * cell
+                y1 = grid_top + margin + r * cell
                 y2 = y1 + cell
-                parts.append(f"<line x1='{x}' y1='{y1}' x2='{x}' y2='{y2}' stroke='black' stroke-width='3' />")
+                parts.append(
+                    f"<line x1='{x}' y1='{y1}' x2='{x}' y2='{y2}' stroke='black' stroke-width='3' />"
+                )
     # Horizontal boundaries between (r,c) and (r+1,c)
-    for r in range(GRID_SIZE-1):
+    for r in range(GRID_SIZE - 1):
         for c in range(GRID_SIZE):
-            if regions[r][c] != regions[r+1][c]:
-                y = grid_top + margin + (r+1)*cell
-                x1 = margin + c*cell
+            if regions[r][c] != regions[r + 1][c]:
+                y = grid_top + margin + (r + 1) * cell
+                x1 = margin + c * cell
                 x2 = x1 + cell
-                parts.append(f"<line x1='{x1}' y1='{y}' x2='{x2}' y2='{y}' stroke='black' stroke-width='3' />")
+                parts.append(
+                    f"<line x1='{x1}' y1='{y}' x2='{x2}' y2='{y}' stroke='black' stroke-width='3' />"
+                )
 
     # Numbers
     for r in range(GRID_SIZE):
         for c in range(GRID_SIZE):
             val = grid[r][c]
-            cx = margin + c*cell + cell/2
-            cy = grid_top + margin + r*cell + cell/2 + 7  # slight vertical offset
+            cx = margin + c * cell + cell / 2
+            cy = grid_top + margin + r * cell + cell / 2 + 7  # slight vertical offset
             text_val = str(val) if (show_all_numbers or val != 0) else ""
-            parts.append(f"<text x='{cx}' y='{cy}' class='num' text-anchor='middle'>{text_val}</text>")
+            parts.append(
+                f"<text x='{cx}' y='{cy}' class='num' text-anchor='middle'>{text_val}</text>"
+            )
 
     # Bottom-left ID
-    parts.append(f"<text x='{margin}' y='{height-6}' class='id' text-anchor='start' style='font-size:10; fill:gray'>ID: {puzzle_id} - Difficulty / Schwierigkeit: {difficulty}</text>")
+    parts.append(
+        f"<text x='{margin}' y='{height-6}' class='id' text-anchor='start' style='font-size:10; fill:gray'>ID: {puzzle_id} - Difficulty / Schwierigkeit: {difficulty}</text>"
+    )
 
     parts.append("</svg>")
     svg = "\n".join(parts)
@@ -361,9 +403,11 @@ def solution_placeholder_digit() -> str:
     """Return empty string; reserved for potential pencil marks. Kept for clarity."""
     return ""
 
+
 # ------------------------------
 # Utility
 # ------------------------------
+
 
 def new_id(length: int = 8) -> str:
     alphabet = string.ascii_uppercase + string.digits
@@ -379,15 +423,29 @@ def make_filename(base_dir: str, puzzle_id: str, difficulty: int, kind: str) -> 
     # kind: 'puzzle' or 'solution'
     return os.path.join(base_dir, f"jigsaw-{difficulty}-{puzzle_id}-{kind}.svg")
 
+
 # ------------------------------
 # CLI
 # ------------------------------
 
+
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Generate Jigsaw Sudokus and export to SVG.")
-    parser.add_argument("-d", "--difficulty", type=int, default=3, help="Difficulty level 1–6")
-    parser.add_argument("-n", "--count", type=int, default=1, help="Number of Sudokus to generate")
-    parser.add_argument("-o", "--output", type=str, default="output/jigsaw", help="Output directory for SVGs")
+    parser = argparse.ArgumentParser(
+        description="Generate Jigsaw Sudokus and export to SVG."
+    )
+    parser.add_argument(
+        "-d", "--difficulty", type=int, default=3, help="Difficulty level 1–6"
+    )
+    parser.add_argument(
+        "-n", "--count", type=int, default=1, help="Number of Sudokus to generate"
+    )
+    parser.add_argument(
+        "-o",
+        "--output",
+        type=str,
+        default="output/jigsaw",
+        help="Output directory for SVGs",
+    )
     return parser.parse_args()
 
 
@@ -411,7 +469,9 @@ def main() -> None:
 
         svg_render(puzzle, regions, puzzle_path, d, pid, show_all_numbers=False)
         svg_render(solution, regions, solution_path, d, pid, show_all_numbers=True)
-        print(f"Generated: {os.path.basename(puzzle_path)} and {os.path.basename(solution_path)}")
+        print(
+            f"Generated: {os.path.basename(puzzle_path)} and {os.path.basename(solution_path)}"
+        )
 
 
 if __name__ == "__main__":
