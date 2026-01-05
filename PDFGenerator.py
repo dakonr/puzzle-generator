@@ -31,6 +31,7 @@ except ImportError as e:
     print("Installiere mit: pip install reportlab pillow")
     sys.exit(1)
 
+PAGE_TITLE = "Jigsaw Sudoku"
 
 def find_puzzle_pairs(directory: str) -> List[Tuple[str, str, str]]:
     """
@@ -235,7 +236,7 @@ def create_pdf_with_puzzles(directory: str, output_file: str = "sudoku_puzzles.p
                 # Titel
                 pdf_canvas.setFont("Helvetica-Bold", 16)
                 pdf_canvas.drawString(
-                    margin, height - margin - 0.5 * cm, "Mini Sudoku 6x6"
+                    margin, height - margin - 0.5 * cm, PAGE_TITLE
                 )
 
                 # Bild
