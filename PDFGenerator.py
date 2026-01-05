@@ -33,6 +33,7 @@ except ImportError as e:
 
 PAGE_TITLE = "Jigsaw Sudoku"
 
+
 def find_puzzle_pairs(directory: str) -> List[Tuple[str, str, str]]:
     """
     Findet alle Puzzle-Lösungs-Paare im Verzeichnis.
@@ -70,13 +71,13 @@ def find_puzzle_pairs(directory: str) -> List[Tuple[str, str, str]]:
     return pairs
 
 
-def svg_to_png(svg_path: str, width: int = 1600, dpi: int = 300) -> Image.Image:
+def svg_to_png(svg_path: str, width: int = 1800, dpi: int = 300) -> Image.Image:
     """
     Konvertiert eine SVG-Datei zu einem PIL Image mittels ImageMagick mit hoher Auflösung.
 
     Args:
         svg_path: Pfad zur SVG-Datei
-        width: Zielbreite in Pixeln (Standard: 1600 für hohe Auflösung)
+        width: Zielbreite in Pixeln (Standard: 1800 für hohe Auflösung)
         dpi: DPI-Einstellung für die Konvertierung (Standard: 300 für Druck)
 
     Returns:
@@ -235,9 +236,7 @@ def create_pdf_with_puzzles(directory: str, output_file: str = "sudoku_puzzles.p
 
                 # Titel
                 pdf_canvas.setFont("Helvetica-Bold", 16)
-                pdf_canvas.drawString(
-                    margin, height - margin - 0.5 * cm, PAGE_TITLE
-                )
+                pdf_canvas.drawString(margin, height - margin - 0.5 * cm, PAGE_TITLE)
 
                 # Bild
                 pdf_canvas.drawImage(
