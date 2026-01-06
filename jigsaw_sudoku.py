@@ -20,6 +20,7 @@ import random
 import secrets
 import string
 import os
+import time
 from typing import List, Tuple, Optional
 
 # ------------------------------
@@ -459,7 +460,17 @@ def main() -> None:
     for _ in range(count):
         pid = new_id()
         # Generate regions and a full solution
-        regions = generate_regions()
+        regions = None
+        retry_ttl = 7
+        while not regions and retry_ttl > 0:
+            try:
+                regions = generate_regions()
+                print(f"Generated regions for puzzle ID {pid}")
+            except Exception:
+                print("Region generation failed, retrying...")
+                time.sleep(1)
+                # retry_ttl -= 1
+                # continue
         solution = generate_full_solution(regions)
         target_givens = DIFFICULTY_GIVENS.get(d, DIFFICULTY_GIVENS[3])
         puzzle = generate_puzzle_from_solution(solution, regions, target_givens)
