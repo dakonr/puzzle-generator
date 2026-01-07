@@ -33,6 +33,9 @@ except ImportError as e:
 
 PAGE_TITLE = "Jigsaw Sudoku"
 
+# NEU: KDP-Seitengröße 13,97 cm x 21,59 cm (5.5" x 8.5") in Punkten (1in = 72pt)
+KDP_PAGE_SIZE = (396.0, 612.0)  # (width_pt, height_pt)
+
 
 def find_puzzle_pairs(directory: str) -> List[Tuple[str, str, str]]:
     """
@@ -175,9 +178,12 @@ def get_image_dimensions(svg_path: str) -> Tuple[float, float]:
         return (200, 200)
 
 
-def create_pdf_with_puzzles(directory: str, output_file: str = "sudoku_puzzles.pdf"):
+def create_pdf_with_puzzles(
+    directory: str, output_file: str = "sudoku_puzzles.pdf", pagesize=A4
+):
     """
     Erstellt ein PDF mit Rätseln und Lösungen auf abwechselnden Seiten.
+    pagesize: Tuple(width_pt, height_pt) oder reportlab.pagesizes (Default: A4)
     """
     import tempfile
 
@@ -196,9 +202,9 @@ def create_pdf_with_puzzles(directory: str, output_file: str = "sudoku_puzzles.p
     temp_dir = tempfile.mkdtemp()
 
     # PDF erstellen
-    pdf_canvas = canvas.Canvas(output_file, pagesize=A4)
+    pdf_canvas = canvas.Canvas(output_file, pagesize=pagesize)
 
-    width, height = A4
+    width, height = pagesize
     margin = 1 * cm
 
     # Optimale Bildgröße für A4 (mit Margins)
@@ -303,9 +309,16 @@ if __name__ == "__main__":
     # Verzeichnis als Kommandozeilenargument oder aktuelles Verzeichnis
     directory = sys.argv[1] if len(sys.argv) > 1 else "."
     output_file = sys.argv[2] if len(sys.argv) > 2 else "sudoku_puzzles.pdf"
+    pagesize_arg = sys.argv[3] if len(sys.argv) > 3 else "A4"
+
+    # Kurze Seitenauswahl: "kdp" -> 13,97cm x 21,59cm; "A4" -> A4
+    if pagesize_arg.lower() in ("kdp", "5.5x8.5", "5.5x8.5in"):
+        pagesize = KDP_PAGE_SIZE
+    else:
+        pagesize = A4
 
     if not os.path.isdir(directory):
         print(f"Fehler: Verzeichnis '{directory}' nicht gefunden.")
         sys.exit(1)
 
-    create_pdf_with_puzzles(directory, output_file)
+    create_pdf_with_puzzles(directory, output_file, pagesize=pagesize)
